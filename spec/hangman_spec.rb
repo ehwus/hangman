@@ -2,6 +2,10 @@
 
 require 'hangman'
 
+describe Game do
+
+end
+
 describe Word do
   describe '#display_word' do
     it "returns '_' in place of each char by default" do
@@ -77,4 +81,4 @@ describe Player do
       expect(player1.guesses_left).to eq(4)
     end
   end
-end  
+end

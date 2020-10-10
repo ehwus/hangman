@@ -1,5 +1,36 @@
 # frozen_string_literal: true
 
+class Game
+  def initialize(save_state = false)
+    @word = Word.new('placeholder')
+    @player = Player.new
+  end
+
+  def play_game
+    loop do
+      if @player.guesses_left == 0
+        puts "You're out of lives!"
+        break
+      end
+      puts "You have #{@player.guesses_left} guesses remaining"
+      show_word_take_input
+      if @word.guessed_correctly?
+        puts "You win, well done!"
+        break
+      end
+    end
+  end
+
+  def show_word_take_input
+    puts @word.display_word
+    puts
+    puts 'Choose a letter'
+    choice = gets.chomp.downcase
+    @word.make_guess(choice)
+    @player.use_guess unless @word.correct_letters.include?(choice)
+  end
+end
+
 class Word
   attr_reader :correct_letters
 
@@ -41,3 +72,6 @@ class Player
     @guesses_left -= 1
   end
 end
+
+test = Game.new
+test.play_game
