@@ -48,5 +48,10 @@ describe Word do
       all_guessed.make_guess('l')
       expect(all_guessed.guessed_correctly?).to eq(true)
     end
+
+    it 'returns false if no letters guessed' do
+      none_guessed = Word.new('test')
+      expect(none_guessed.guessed_correctly?).to eq(false)
+    end  
   end
 end

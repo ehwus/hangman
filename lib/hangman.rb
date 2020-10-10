@@ -27,5 +27,5 @@ class Word
 
   def guessed_correctly?
     true
-  end 
+  end
 end
