@@ -2,20 +2,39 @@
 require 'yaml'
 
 class Game
-  def initialize(save_state = false)
-    @word = Word.new(random_word)
-    @player = Player.new
+  def initialize
+    choice = nil
+    loop do
+      puts "Press 1 to start a new game, or 2 to load a game"
+      choice = gets.chomp.to_i
+      if choice == 2
+        load_game
+        break
+      elsif choice == 1
+        @word = Word.new(random_word)
+        @player = Player.new
+        break
+      end
+    end
   end
 
   def save_game
-    File.open('save.yaml', 'w') do |file|
+    File.open('save.yml', 'w') do |file|
       data = YAML.dump ({
         :word => @word,
         :player => @player
       })
       file.puts data
     end
+    puts "Game saved, see you next time!"
+    exit
   end
+
+  def load_game
+    data = YAML.load(File.read('save.yml'))
+    @word = data[:word]
+    @player = data[:player]
+  end  
 
   def random_word
     line = IO.readlines('5desk.txt')
@@ -96,4 +115,4 @@ class Player
 end
 
 test = Game.new
-test.save_game
+test.play_game
