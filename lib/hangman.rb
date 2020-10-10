@@ -36,4 +36,8 @@ class Player
   def initialize
     @guesses_left = 6
   end
+
+  def use_guess
+    @guesses_left -= 1
+  end
 end

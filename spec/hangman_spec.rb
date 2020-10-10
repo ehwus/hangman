@@ -69,5 +69,12 @@ describe Player do
       player1 = Player.new
       expect(player1.guesses_left).to eq(6)
     end
+
+    it "returns 4 if player has made 2 guesses" do
+      player1 = Player.new
+      player1.use_guess
+      player1.use_guess
+      expect(player1.guesses_left).to eq(4)
+    end
   end
 end  
