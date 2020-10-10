@@ -31,5 +31,9 @@ class Word
 end
 
 class Player
+  attr_reader :guesses_left
 
+  def initialize
+    @guesses_left = 6
+  end
 end
