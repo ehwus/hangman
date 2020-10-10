@@ -1,9 +1,20 @@
 # frozen_string_literal: true
+require 'yaml'
 
 class Game
   def initialize(save_state = false)
     @word = Word.new(random_word)
     @player = Player.new
+  end
+
+  def save_game
+    File.open('save.yaml', 'w') do |file|
+      data = YAML.dump ({
+        :word => @word,
+        :player => @player
+      })
+      file.puts data
+    end
   end
 
   def random_word
@@ -85,4 +96,4 @@ class Player
 end
 
 test = Game.new
-test.play_game
+test.save_game
