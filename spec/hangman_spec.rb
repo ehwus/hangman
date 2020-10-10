@@ -6,6 +6,12 @@ describe Word do
       no_letters_guessed = Word.new('apple')
       expect(no_letters_guessed.display_word).to eq("_ _ _ _ _")
     end
+    
+    it "uses letter if it has been guessed" do
+      some_letters_guessed = Word.new('banana')
+      some_letters_guessed.make_guess('a')
+      expect(some_letters_guessed.display_word).to eq("_ a _ a _ a")
+    end
   end
 
   describe '#make_guess' do
