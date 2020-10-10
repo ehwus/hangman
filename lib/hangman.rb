@@ -2,8 +2,19 @@
 
 class Game
   def initialize(save_state = false)
-    @word = Word.new('placeholder')
+    @word = Word.new(random_word)
     @player = Player.new
+  end
+
+  def random_word
+    line = IO.readlines('5desk.txt')
+    c = rand * line.length.to_i
+    possible_word = line[c - 1].chomp.downcase
+    if possible_word.length > 4 && possible_word.length < 13
+      possible_word
+    else
+      random_word
+    end
   end
 
   def play_game
@@ -32,7 +43,7 @@ class Game
 end
 
 class Word
-  attr_reader :correct_letters
+  attr_reader :correct_letters, :word
 
   def initialize(word)
     @word = word
