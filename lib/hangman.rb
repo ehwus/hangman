@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Word
   attr_reader :correct_letters
 
@@ -7,12 +9,19 @@ class Word
   end
 
   def display_word
-    '_ ' * (@word.length - 1) + '_'
+    return_word = ''
+    @word.split('').each_with_index do |char, index|
+      return_word += if correct_letters.include?(char)
+                       char
+                     else
+                       '_'
+                     end
+      return_word += ' ' if index != @word.length - 1
+    end
+    return_word
   end
 
   def make_guess(letter)
-    if @word.split('').include?(letter)
-      correct_letters.push(letter)
-    end
+    correct_letters.push(letter) if @word.split('').include?(letter)
   end
 end
