@@ -48,5 +48,5 @@ describe Word do
       all_guessed.make_guess('l')
       expect(all_guessed.guessed_correctly?).to eq(true)
     end
-  end  
+  end
 end

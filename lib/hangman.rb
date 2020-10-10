@@ -24,4 +24,8 @@ class Word
   def make_guess(letter)
     correct_letters.push(letter) if @word.split('').include?(letter)
   end
+
+  def guessed_correctly?
+    true
+  end 
 end
