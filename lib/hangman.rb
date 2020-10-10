@@ -34,7 +34,7 @@ class Game
     data = YAML.load(File.read('save.yml'))
     @word = data[:word]
     @player = data[:player]
-  end  
+  end
 
   def random_word
     line = IO.readlines('5desk.txt')
@@ -50,11 +50,13 @@ class Game
   def play_game
     loop do
       if @player.guesses_left == 0
-        puts "You're out of lives!"
+        puts "You're out of lives! The word was #{@word}"
         break
       end
+      puts @word.display_word
+      puts
       puts "You have #{@player.guesses_left} guesses remaining"
-      show_word_take_input
+      take_input
       if @word.guessed_correctly?
         puts "You win, well done!"
         break
@@ -62,13 +64,18 @@ class Game
     end
   end
 
-  def show_word_take_input
-    puts @word.display_word
-    puts
-    puts 'Choose a letter'
-    choice = gets.chomp.downcase
-    @word.make_guess(choice)
-    @player.use_guess unless @word.correct_letters.include?(choice)
+  def take_input
+    loop do
+      puts 'Choose a single letter, or input save to record your progress'
+      choice = gets.chomp.downcase
+      if choice == 'save'
+        save_game
+      elsif choice.length == 1 && choice.match?(/[a-z]/)
+        @word.make_guess(choice)
+        @player.use_guess unless @word.correct_letters.include?(choice)
+        break
+      end
+    end
   end
 end
 
@@ -113,6 +120,3 @@ class Player
     @guesses_left -= 1
   end
 end
-
-test = Game.new
-test.play_game
