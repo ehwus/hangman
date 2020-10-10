@@ -36,4 +36,17 @@ describe Word do
       expect(test_guesses.correct_letters).to eq([])
     end
   end
+
+  describe '#guessed_correctly?' do
+    it 'returns true if all letters guessed' do
+      all_guessed = Word.new('example')
+      all_guessed.make_guess('e')
+      all_guessed.make_guess('x')
+      all_guessed.make_guess('a')
+      all_guessed.make_guess('m')
+      all_guessed.make_guess('p')
+      all_guessed.make_guess('l')
+      expect(all_guessed.guessed_correctly?).to eq(true)
+    end
+  end  
 end
