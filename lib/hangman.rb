@@ -26,6 +26,6 @@ class Word
   end
 
   def guessed_correctly?
-    true
+    @word.split('').all? { |char| correct_letters.include?(char) }
   end
 end

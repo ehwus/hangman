@@ -52,6 +52,6 @@ describe Word do
     it 'returns false if no letters guessed' do
       none_guessed = Word.new('test')
       expect(none_guessed.guessed_correctly?).to eq(false)
-    end  
+    end
   end
 end
