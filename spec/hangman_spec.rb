@@ -59,6 +59,13 @@ describe Word do
       some_guessed.make_guess('b')
       some_guessed.make_guess('a')
       expect(some_guessed.guessed_correctly?).to eq(false)
-    end  
+    end
   end
 end
+
+describe Player do
+  describe '#guesses_left' do
+    player1 = Player.new
+    expect(player1.guesses_left).to eq(6)
+  end
+end  

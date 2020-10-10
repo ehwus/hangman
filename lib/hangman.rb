@@ -29,3 +29,7 @@ class Word
     @word.split('').all? { |char| correct_letters.include?(char) }
   end
 end
+
+class Player
+
+end
