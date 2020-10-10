@@ -53,5 +53,12 @@ describe Word do
       none_guessed = Word.new('test')
       expect(none_guessed.guessed_correctly?).to eq(false)
     end
+
+    it 'returns false if some letters are guessed' do
+      some_guessed = Word.new('badger')
+      some_guessed.make_guess('b')
+      some_guessed.make_guess('a')
+      expect(some_guessed.guessed_correctly?).to eq(false)
+    end  
   end
 end
